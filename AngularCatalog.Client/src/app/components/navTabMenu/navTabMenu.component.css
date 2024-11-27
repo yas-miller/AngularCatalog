@@ -1,0 +1,53 @@
+:host ::ng-deep .p-tabmenu {
+  border-width: 0px 0px 1px 0px;
+  padding: 2px;
+}
+
+.menuItemsBlock .menuItem {
+  padding: 5px;
+}
+
+
+.p-tabmenu {
+  border: none;
+}
+.p-tabmenu-nav {
+  border: 1px white solid;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.p-tabmenuitem {
+  width: 50%;
+}
+.p-menuitem-link {
+  width: 100%;
+  align-content: center;
+  text-align: center;
+}
+.p-menuitem-link:active ,.p-menuitem-link:focus{
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  border-bottom: 4px #127ae5 solid;
+  border-radius: 5px;
+}
+.p-menuitem-text {
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
+  color: #127ae5;
+}
+
+
+@media screen and (max-width: 576px) {
+  .show-on-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .hide-on-desktop {
+    display: none;
+  }
+}

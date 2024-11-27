@@ -1,0 +1,21 @@
+p-floatLabel, p-inputnumber, p-dropdown, p-button {
+  padding: 10px;
+}
+
+p-button {
+  margin-left: 10px;
+}
+
+span label {
+  left: 0.75em;
+  color: #6b7280;
+  transition-duration: 0.2s;
+}
+
+p-floatLabel {
+  padding: 10px
+}
+
+#registerButton {
+    margin-top: 10px
+}

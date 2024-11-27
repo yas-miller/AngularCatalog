@@ -1,0 +1,20 @@
+:host {
+  max-width: 1280px;
+  max-height: 720px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+th, td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+table {
+    margin: 0 auto;
+}

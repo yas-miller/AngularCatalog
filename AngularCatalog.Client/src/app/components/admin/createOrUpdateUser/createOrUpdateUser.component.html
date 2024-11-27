@@ -1,0 +1,23 @@
+<p-sidebar closeOnEscape="true" (onHide)="onHideSidebar($event)" [(visible)]="sidebarVisible">
+  <div class="parentContainer">
+    <b>{{this.user?.Id ? 'Изменение пользователя' : 'Добавление пользователя'}}</b>
+
+    <ng-container *ngIf="this.user?.Id; else noUser">
+      <div class="container">
+  
+        <p-floatLabel>
+          <input pInputText id="newPassword" type="password" [(ngModel)]="newPassword" [ngModelOptions]="{standalone: true}" />
+          <label for="newPassword">Новый пароль</label>
+        </p-floatLabel>
+        
+        <p-button id="createOrUpdateUserButton" (onClick)="changePasswordForUser()">Обновить пароль пользователя</p-button>
+      </div>
+    </ng-container>
+  
+    <ng-template #noUser>
+      <Register [adminEdit]="true"/>
+    </ng-template>
+  </div>
+</p-sidebar>
+
+<p-button id="createOrUpdateUserExpandButton" icon="pi pi-plus-circle" (onClick)="sidebarVisible = true" *ngIf="user && !user?.Id" />  

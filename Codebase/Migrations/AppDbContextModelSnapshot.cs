@@ -30,7 +30,7 @@ namespace Codebase.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateTimeCreated")
+                    b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
@@ -38,7 +38,7 @@ namespace Codebase.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("UserCreatedId")
+                    b.Property<int?>("UserCreatedId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -58,6 +58,9 @@ namespace Codebase.Migrations
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(300)
@@ -82,9 +85,14 @@ namespace Codebase.Migrations
                     b.Property<decimal?>("PriceRubles")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<int?>("UserCreatedId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserCreatedId");
 
                     b.ToTable("Products");
                 });
@@ -102,8 +110,8 @@ namespace Codebase.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("longtext");
+                    b.Property<bool>("IsBlocked")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -115,7 +123,9 @@ namespace Codebase.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordSalt")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Surname")
@@ -133,10 +143,8 @@ namespace Codebase.Migrations
             modelBuilder.Entity("Codebase.Models.Category", b =>
                 {
                     b.HasOne("Codebase.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("CreatedCategories")
+                        .HasForeignKey("UserCreatedId");
 
                     b.Navigation("UserCreated");
                 });
@@ -147,12 +155,25 @@ namespace Codebase.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
+                    b.HasOne("Codebase.Models.User", "UserCreated")
+                        .WithMany("CreatedProducts")
+                        .HasForeignKey("UserCreatedId");
+
                     b.Navigation("Category");
+
+                    b.Navigation("UserCreated");
                 });
 
             modelBuilder.Entity("Codebase.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Codebase.Models.User", b =>
+                {
+                    b.Navigation("CreatedCategories");
+
+                    b.Navigation("CreatedProducts");
                 });
 #pragma warning restore 612, 618
         }

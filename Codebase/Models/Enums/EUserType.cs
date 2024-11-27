@@ -10,10 +10,10 @@ namespace Codebase.Models.Enums
     public enum EUserType: int
     {
         [Description("Простой пользователь")]
-        User = 1,
+        User = 0,
         [Description("Продвинутый пользователь")]
-        ProUser = 2,
+        ProUser = 1,
         [Description("Администратор")]
-        Admin = 3
+        Admin = 2
     }
 }

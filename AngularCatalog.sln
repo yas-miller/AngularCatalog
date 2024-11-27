@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularCatalog.Server", "AngularCatalog.Server\AngularCatalog.Server.csproj", "{C93D19C4-F07E-46EF-943B-A90C3BCE42BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularCatalog.Server", "AngularCatalog.Server\AngularCatalog.Server.csproj", "{C93D19C4-F07E-46EF-943B-A90C3BCE42BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codebase", "Codebase\Codebase.csproj", "{8CE58003-0DE0-40D3-94A2-6353B041EE6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebase", "Codebase\Codebase.csproj", "{8CE58003-0DE0-40D3-94A2-6353B041EE6F}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AngularCatalog.Client", "AngularCatalog.Client\AngularCatalog.Client.esproj", "{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{8CE58003-0DE0-40D3-94A2-6353B041EE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CE58003-0DE0-40D3-94A2-6353B041EE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CE58003-0DE0-40D3-94A2-6353B041EE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B62433E-0BFD-4EB0-ABB7-959732DB46C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

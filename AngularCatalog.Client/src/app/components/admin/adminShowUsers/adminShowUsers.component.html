@@ -1,0 +1,99 @@
+<ng-container>
+  <CreateOrUpdateUser/>
+
+  <ng-container>
+    <CreateOrUpdateUser [user]="userToEdit" [(sidebarVisible)]="sidebarVisible"/>
+  
+    <div class="card">
+      <p-dataView #dv [value]="usersCopyList" [paginator]="true" [rows]="10" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="listItem">
+          <div *ngFor="let user of usersCopyList; let first = first">
+            <div class="p-col-12">
+              <div class="product-list-item cardItem">
+                <div class="product-list-detail">
+                  <div>
+                    <div class="product-name">{{user.Login}}</div>
+                    <div class="product-description">
+                      {{user.Name}}
+                      {{user.Surname}}
+                    </div>
+                    <div class="product-block-status">
+                      <div class="blocked" *ngIf="user.IsBlocked" >
+                        <i class="pi pi-lock product-icon"></i>
+                        <span>Пользователь заблокирован</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-control-actions">
+                  <p-button (onClick)="showUpdateUser(user)">
+                    <i class="pi pi-pencil product-icon"></i>
+                    <span>Изменить пароль</span>
+                  </p-button>
+                  <p-button *ngIf="!user.IsBlocked" (onClick)="blockUser(user)">
+                    <i class="pi pi-lock product-icon"></i>
+                    <span>Заблокировать пользователя</span>
+                  </p-button>
+                  <p-button *ngIf="user.IsBlocked" (onClick)="unblockUser(user)">
+                    <i class="pi pi-lock-open product-icon"></i>
+                    <span>Разблокировать пользователя</span>
+                  </p-button>
+                  <p-button (onClick)="deleteUser(user)">
+                    <i class="pi pi-pencil product-icon"></i>
+                    <span>Удалить</span>
+                  </p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="gridItem">
+          <div *ngFor="let user of usersCopyList; let first = first">
+            <div class="col-12 md:col-4">
+                <div class="product-grid-item cardItem">
+                  <div class="product-grid-item-content">
+                    <div>
+                      <div class="product-name">{{user.Login}}</div>
+                      <div class="product-description">
+                        {{user.Name}}
+                        {{user.Surname}}
+                      </div>
+                      <div class="product-block-status">
+                        <div class="blocked" *ngIf="user.IsBlocked" >
+                          <i class="pi pi-lock product-icon"></i>
+                          <span>Пользователь заблокирован</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-control-actions">
+                    <p-button (onClick)="showUpdateUser(user)">
+                      <i class="pi pi-pencil product-icon"></i>
+                      <span>Изменить пароль</span>
+                    </p-button>
+                    <p-button *ngIf="!user.IsBlocked" (onClick)="blockUser(user)">
+                      <i class="pi pi-lock product-icon"></i>
+                      <span>Заблокировать пользователя</span>
+                    </p-button>
+                    <p-button *ngIf="user.IsBlocked" (onClick)="unblockUser(user)">
+                      <i class="pi pi-lock-open product-icon"></i>
+                      <span>Разблокировать пользователя</span>
+                    </p-button>
+                    <p-button (onClick)="deleteUser(user)">
+                      <i class="pi pi-pencil product-icon"></i>
+                      <span>Удалить</span>
+                    </p-button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+    </p-dataView>
+    </div>
+  </ng-container>
+</ng-container>

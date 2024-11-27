@@ -1,6 +1,6 @@
-namespace Codebase.Services;
+namespace AngularCatalog.Server.Helpers;
 
-public class CustomClaimTypes
+public static class CustomClaimTypes
 {
-    
+    public const string Id = "Id";
 }

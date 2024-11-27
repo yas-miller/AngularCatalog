@@ -1,0 +1,17 @@
+<p-sidebar closeOnEscape="true" (onHide)="onHideSidebar($event)" [(visible)]="sidebarVisible">
+  <div class="parentContainer" *ngIf="category">
+    <b>{{this.category?.Id ? 'Изменение категории' : 'Добавление категории'}}</b>
+
+    <div class="container">
+      <p-floatLabel>
+        <input pInputText id="name" maxlength="100" [(ngModel)]="category.Name" [ngModelOptions]="{standalone: true}" />
+        <label for="name">Название</label>
+      </p-floatLabel>
+      
+      <p-button id="createOrUpdateCategoryButton" (onClick)="createOrUpdateCategory()">{{this.category?.Id ? 'Обновить категорию' : 'Добавить категорию'}}</p-button>
+    </div>
+  </div>
+  
+</p-sidebar>
+
+<p-button id="createOrUpdateCategoryExpandButton" icon="pi pi-plus-circle" (onClick)="sidebarVisible = true" *ngIf="category && !category?.Id" />  

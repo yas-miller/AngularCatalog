@@ -1,0 +1,14 @@
+<h1>Администрирование</h1>
+
+<p-tabView>
+  <p-tabPanel header="Продукты">
+    <Catalog [adminEdit]="true"/>
+  </p-tabPanel>
+  <p-tabPanel header="Категории">
+    <AdminShowCategories/>
+  </p-tabPanel>
+  <p-tabPanel header="Пользователи">
+    <AdminShowUsers/>
+  </p-tabPanel>
+</p-tabView>
+

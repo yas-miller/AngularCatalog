@@ -21,5 +21,8 @@ namespace Codebase.Models
         [MaxLength(1000)]
         public string? NotesSpecial { get; set; }
         public string? ImageUrl { get; set; }
+        
+        public User? UserCreated { get; set; }
+        public DateTime? DateTimeCreated { get; set; }
     }
 }

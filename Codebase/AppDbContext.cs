@@ -17,7 +17,8 @@ namespace Codebase
 
         public AppDbContext()
         {
-            Database.Migrate();
+            Database.EnsureCreated();
+            //Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,6 +27,14 @@ namespace Codebase
 
             optionsBuilder.UseMySql(connectionString,
                 new MySqlServerVersion(ServerVersion.AutoDetect(connectionString)));
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Category>()
+                .HasMany(c => c.Products)
+                .WithOne(p => p.Category)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

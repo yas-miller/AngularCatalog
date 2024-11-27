@@ -1,0 +1,18 @@
+<h1 *ngIf="!adminEdit && !queriedProduct">Каталог продуктов</h1>
+
+<ng-container *ngIf="!queriedProduct && !queriedCategory">
+    <CreateOrUpdateProduct/>
+    <ShowProducts [adminEdit]="adminEdit" [products]="(products$ | async)!" [filter]="filter" [sortBy]="sortBy"/>
+</ng-container>
+
+<ng-container *ngIf="queriedProduct && !queriedCategory">
+    <div class="showProduct">
+        <ShowProduct [product]="queriedProduct"/>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="queriedCategory && !queriedProduct">
+    <div class="showCategory">
+        <ShowProducts [adminEdit]="adminEdit" [products]="queriedCategory.Products" [filter]="filter" [sortBy]="sortBy"/>
+    </div>
+</ng-container>

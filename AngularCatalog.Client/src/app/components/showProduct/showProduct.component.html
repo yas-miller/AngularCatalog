@@ -1,0 +1,31 @@
+<ng-container>
+  <div class="card">
+    <div>
+      Название
+      {{product?.Name}}
+    </div>
+    <div>
+      Категория
+      <a [routerLink]="['/catalog']" [queryParams]="{ categoryId: product?.Category?.Id }">{{product?.Category?.Name}}</a>
+    </div>
+    <div>
+      Описание
+      {{product?.Description}}
+    </div>
+    <div>
+      Цена (руб.)
+      {{product?.PriceRubles}}
+    </div>
+    <div>
+      Примечание общее
+      {{product?.Notes}}
+    </div>
+    <div *ngIf="userAuthenticatedIsAdmin$ | async">
+      Примечание специальное
+      {{product?.NotesSpecial}}
+    </div>
+    <div>
+      <img class="block xl:block mx-auto border-round w-full" *ngIf="product?.ImageUrl as imageUrl" [src]="imageUrl" [alt]="product?.Name" />
+    </div>
+  </div>
+</ng-container>

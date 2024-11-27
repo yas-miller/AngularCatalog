@@ -1,0 +1,13 @@
+.account-control-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+p-floatLabel, p-inputnumber, p-dropdown, p-button {
+  padding: 10px;
+}
+
+p-button {
+  margin-left: 10px;
+}

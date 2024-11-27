@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Client",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "start"
+      ],
+      "runtimeExecutable": "npm",
+      "type": "node",
+      "cwd": "${workspaceFolder}/AngularCatalog.Client"
+    },
+    {
+      "name": "Server",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/AngularCatalog.Server/AngularCatalog.Server.csproj"
+    },
+    {
+      "name": "Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceRoot}/AngularCatalog.Client"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full-stack",
+      "configurations": [ "Server", "Client", "Chrome" ]
+    }
+  ]
+}

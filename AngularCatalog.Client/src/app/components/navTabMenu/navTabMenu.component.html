@@ -1,0 +1,124 @@
+<p-tabMenu [model]="menuItems" class="show-on-desktop hide-on-mobile">
+  <ng-template pTemplate="item" let-menuItem>
+
+    <div class="menuItemsBlock desktop">
+      <div class="menuItem">
+        <ng-container *ngIf="menuItem.access!==MenuItemAccess.Any; else anyAccess">
+
+          <ng-container *ngIf="userIsAuthenticated$ | async; else userIsNotAuthenticated">
+            <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithAuth; else accessOnlyWithAuthAdmin">
+              <a [routerLink]="menuItem.path" class="p-menuitem-link">
+                <span [class]="menuItem.icon"></span>
+                <span class="ml-2">
+                  {{ menuItem.title }}
+                </span>
+              </a>
+            </ng-container>
+
+            <ng-template #accessOnlyWithAuthAdmin>
+              <ng-container *ngIf="userAuthenticatedIsAdmin$ | async">
+                <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithAuthAdmin">
+                  <a [routerLink]="menuItem.path" class="p-menuitem-link">
+                    <span [class]="menuItem.icon"></span>
+                    <span class="ml-2">
+                      {{ menuItem.title }}
+                    </span>
+                  </a>
+                </ng-container>
+              </ng-container>
+            </ng-template>
+          </ng-container>
+
+          <ng-template #userIsNotAuthenticated>
+            <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithNoAuth">
+              <a [routerLink]="menuItem.path" class="p-menuitem-link">
+                <span [class]="menuItem.icon"></span>
+                <span class="ml-2">
+                  {{ menuItem.title }}
+                </span>
+              </a>
+            </ng-container>
+          </ng-template>
+
+        </ng-container>
+
+
+        <ng-template #anyAccess>
+          <ng-container>
+            <a [routerLink]="menuItem.path" class="p-menuitem-link">
+              <span [class]="menuItem.icon"></span>
+              <span class="ml-2">
+                {{ menuItem.title }}
+              </span>
+            </a>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+
+</ng-template>
+</p-tabMenu>
+
+<div class="show-on-mobile hide-on-desktop">
+  <p-sidebar closeOnEscape="true" [(visible)]="sidebarVisible" [fullScreen]="true">
+    <ng-container *ngFor="let menuItem of menuItems">
+
+      <div class="menuItemsBlock mobile">
+        <div class="menuItem">
+          <ng-container *ngIf="menuItem.access!==MenuItemAccess.Any; else anyAccess">
+
+            <ng-container *ngIf="userIsAuthenticated$ | async; else userIsNotAuthenticated">
+              <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithAuth; else accessOnlyWithAuthAdmin">
+                <p-button [routerLink]="menuItem.path" class="p-menuitem-link" (onClick)="sidebarVisible = !sidebarVisible">
+                  <span [class]="menuItem.icon"></span>
+                  <span class="ml-2">
+                    {{ menuItem.title }}
+                  </span>
+                </p-button>
+              </ng-container>
+
+              <ng-template #accessOnlyWithAuthAdmin>
+                <ng-container *ngIf="userAuthenticatedIsAdmin$ | async">
+                  <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithAuthAdmin">
+                    <a [routerLink]="menuItem.path" class="p-menuitem-link">
+                      <span [class]="menuItem.icon"></span>
+                      <span class="ml-2">
+                        {{ menuItem.title }}
+                      </span>
+                    </a>
+                  </ng-container>
+                </ng-container>
+              </ng-template>
+            </ng-container>
+
+            <ng-template #userIsNotAuthenticated>
+              <ng-container *ngIf="menuItem.access===MenuItemAccess.OnlyWithNoAuth">
+                <p-button [routerLink]="menuItem.path" class="p-menuitem-link" (onClick)="sidebarVisible = !sidebarVisible">
+                  <span [class]="menuItem.icon"></span>
+                  <span class="ml-2">
+                    {{ menuItem.title }}
+                  </span>
+                </p-button>
+              </ng-container>
+            </ng-template>
+
+          </ng-container>
+
+
+          <ng-template #anyAccess>
+            <ng-container>
+              <p-button [routerLink]="menuItem.path" class="p-menuitem-link" (onClick)="sidebarVisible = !sidebarVisible">
+                <span [class]="menuItem.icon"></span>
+                <span class="ml-2">
+                  {{ menuItem.title }}
+                </span>
+              </p-button>
+            </ng-container>
+          </ng-template>
+        </div>
+      </div>
+
+    </ng-container>
+  </p-sidebar>
+  <p-button icon="pi pi-window-maximize" (onClick)="sidebarVisible = true" />
+</div>

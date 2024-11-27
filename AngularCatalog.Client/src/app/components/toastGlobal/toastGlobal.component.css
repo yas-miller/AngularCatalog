@@ -1,0 +1,21 @@
+:host ::ng-deep .p-tabmenu {
+  border-width: 0px 0px 1px 0px;
+  padding: 2px;
+}
+
+.menuItemsBlock .menuItem {
+  padding: 5px;
+}
+
+
+@media screen and (max-width: 576px) {
+  .show-on-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .hide-on-desktop {
+    display: none;
+  }
+}

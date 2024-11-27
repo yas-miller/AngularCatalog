@@ -1,0 +1,21 @@
+<h1>Личный кабинет</h1>
+
+<div class="account-control-actions">
+  <div class="changePasswordBlock">
+    <p>Тут можно сменить пароль на новый</p>
+  
+    <p-floatLabel>
+      <input pInputText id="oldPassword" type="password" [(ngModel)]="oldPassword" [ngModelOptions]="{standalone: true}" />
+      <label for="username">Старый пароль</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <input pInputText id="newPassword" type="password" [(ngModel)]="newPassword" [ngModelOptions]="{standalone: true}" />
+      <label for="newPassword">Новый пароль</label>
+    </p-floatLabel>
+    <p-button (onClick)="changePassword()">Сменить пароль</p-button>
+  </div>
+  
+  <div class="logOutBlock">
+    <p-button (onClick)="logOut()">Выйти</p-button>
+  </div>  
+</div>

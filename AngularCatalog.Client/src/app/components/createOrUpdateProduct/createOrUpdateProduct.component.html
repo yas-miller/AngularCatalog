@@ -1,0 +1,42 @@
+<p-sidebar closeOnEscape="true" (onHide)="onHideSidebar($event)" [(visible)]="sidebarVisible">
+  <div class="parentContainer">
+    <ng-container *ngIf="product">
+      <b>{{this.product?.Id ? 'Изменение продукта' : 'Добавление продукта'}}</b>
+  
+      <div class="container">
+        <p-floatLabel>
+          <input pInputText id="name" maxlength="100" [(ngModel)]="product.Name" [ngModelOptions]="{standalone: true}" />
+          <label for="name">Название</label>
+        </p-floatLabel>
+        <p-dropdown [options]="(allCategories$ | async)!"
+                    [(ngModel)]="product.Category"
+                    [checkmark]="true"
+                    optionLabel="Name"
+                    [showClear]="true"
+                    placeholder="Выберите категорию"
+                    emptyMessage="Нет доступных категорий" />
+        <p-floatLabel>
+          <input pInputText id="description" maxlength="300" [(ngModel)]="product.Description" [ngModelOptions]="{standalone: true}" />
+          <label for="description">Описание</label>
+        </p-floatLabel>
+        <span class="p-float-label">
+          <p-inputNumber maxlength="300" [(ngModel)]="product.PriceRubles" [ngModelOptions]="{standalone: true}" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"/>
+          <label for="description">Цена (руб.)</label>
+        </span>
+        <p-floatLabel>
+          <textarea pInputText id="notes" inputId="textarea" maxlength="1000" rows="3" cols="30" [(ngModel)]="product.Notes" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+          <label for="notes">Примечание общее</label>
+        </p-floatLabel>
+        <p-floatLabel *ngIf="userAuthenticatedIsAdmin$ | async">
+          <textarea pInputText id="notesSpecial" inputId="textarea" maxlength="1000" rows="3" cols="30" [(ngModel)]="product.NotesSpecial" [ngModelOptions]="{standalone: true}" pInputTextarea></textarea>
+          <label for="notesSpecial">Примечание специальное</label>
+        </p-floatLabel>
+        <ProductImageUpload [(uploadedImageUrl)]="product.ImageUrl"/>
+    
+        <p-button id="createOrUpdateProductButton" (onClick)="createOrUpdateProduct()">{{this.product?.Id ? 'Обновить продукт' : 'Добавить продукт'}}</p-button>
+      </div>
+    </ng-container>
+  </div>
+</p-sidebar>
+
+<p-button id="createOrUpdateProductExpandButton" icon="pi pi-plus-circle" (onClick)="sidebarVisible = true" *ngIf="product && !product?.Id" />  

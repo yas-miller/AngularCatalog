@@ -1,0 +1,66 @@
+<ng-container>
+  <CreateOrUpdateCategory/>
+
+  <ng-container>
+    <CreateOrUpdateCategory [category]="categoryToEdit" [(sidebarVisible)]="sidebarVisible"/>
+  
+    <div class="card">
+      <p-dataView #dv [value]="categoriesCopyList" [paginator]="true" [rows]="10" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="listItem">
+          <div *ngFor="let category of categoriesCopyList; let first = first">
+            <div class="p-col-12">
+              <div class="product-list-item cardItem">
+                <div class="product-list-detail">
+                  <div>
+                    <div class="product-name">{{category.Name}}</div>
+                  </div>
+                </div>
+                <div class="product-control-actions">
+                  <p-button (onClick)="showUpdateCategory(category)">
+                    <i class="pi pi-pencil product-icon"></i>
+                    <span>Редактировать</span>
+                  </p-button>
+                  <p-button (onClick)="deleteCategory(category)">
+                    <i class="pi pi-pencil product-icon"></i>
+                    <span>Удалить</span>
+                  </p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="gridItem">
+          <div *ngFor="let category of categoriesCopyList; let first = first">
+            <div class="col-12 md:col-4">
+                <div class="product-grid-item cardItem">
+                  <div class="product-grid-item-content">
+                    <div>
+                      <div class="product-name">{{category.Name}}</div>
+                    </div>
+                  </div>
+                  <div class="product-control-actions">
+                    <p-button (onClick)="showUpdateCategory(category)">
+                      <i class="pi pi-pencil product-icon"></i>
+                      <span>Редактировать</span>
+                    </p-button>
+                    <p-button (onClick)="deleteCategory(category)">
+                      <i class="pi pi-pencil product-icon"></i>
+                      <span>Удалить</span>
+                    </p-button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+    </p-dataView>
+    </div>
+  </ng-container>
+</ng-container>
+
+
+  

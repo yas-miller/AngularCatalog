@@ -35,9 +35,9 @@ namespace Codebase.Helpers
         }
 
 
-        internal static bool ValidatePassword(string passwordSalted, string password, string saltString)
+        internal static bool ValidatePassword(string passwordSalted, string saltString, string password)
         {
-            var hashedPassword = HashPassword(passwordSalted, Convert.FromBase64String(saltString));
+            var hashedPassword = HashPassword(password, Convert.FromBase64String(saltString));
 
             return passwordSalted == hashedPassword;
         }
